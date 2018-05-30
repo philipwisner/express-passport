@@ -3,12 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 var passport = require('passport');
-
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var passport = require('passport');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+mongoose.connect(process.env.MONGO_DB_URL);
+
+app.use(session({
+  secret: 'passport-app',
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
