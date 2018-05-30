@@ -30,7 +30,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successReturnToOrRedirect: 'main',
+  successReturnToOrRedirect: 'index',
   failureRedirect: '/signup',
   passReqToCallback: true
 }));
