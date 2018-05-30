@@ -8,12 +8,17 @@ var passport = require('passport');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+
+//PASSPORT FILE
+var configure = require('./config/passport');
+
+//ROUTES
+var index = require('./routes/index');
+var auth = require('./routes/auth');
 
 var app = express();
 
-mongoose.connect(process.env.MONGO_DB_URL);
+mongoose.connect('mongodb://localhost:27017/passport');
 
 app.use(session({
   secret: 'passport-app',
@@ -28,14 +33,21 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+configure(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', index);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
