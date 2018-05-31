@@ -1,9 +1,14 @@
+//PASSPORT REQS
+var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-var passport = require("passport");
+
+//PASSWORD CREATION
 var bcrypt = require('bcrypt');
 var bcryptSalt = 10;
+
+//USER MODEL
 var User = require("../models/user");
 
 // load up the user model

@@ -25,9 +25,12 @@ app.use(session({
 }));
 
 
-// view engine setup
+//VIEW ENGINE
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'layouts/main-layout');
+app.use(expressLayouts);
+
 
 //PASSPORT
 configure(passport);
@@ -44,6 +47,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//AUTHENTICATION
 app.use((req, res, next) => {
   if (typeof (req.user) !== "undefined") {
     res.locals.userSignedIn = true;
