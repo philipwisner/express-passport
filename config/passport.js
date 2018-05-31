@@ -1,15 +1,15 @@
 //PASSPORT REQS
-var passport = require("passport");
-var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 //PASSWORD CREATION
-var bcrypt = require('bcrypt');
-var bcryptSalt = 10;
+const bcrypt = require('bcrypt');
+const bcryptSalt = 10;
 
 //USER MODEL
-var User = require("../models/user");
+const User = require("../models/user");
 
 
 module.exports = (passport) => {

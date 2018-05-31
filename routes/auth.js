@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-var User = require("../models/user");
+const User = require("../models/user");
 
 // Bcrypt to encrypt passwords
-var bcrypt = require("bcrypt");
-var bcryptSalt = 10;
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 
 
 //signIn

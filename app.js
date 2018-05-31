@@ -1,19 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
-var expressLayouts = require('express-ejs-layouts');
-var passport = require('passport');
-var flash = require('connect-flash');
-var session = require('express-session');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const expressLayouts = require('express-ejs-layouts');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 //PASSPORT FILE
-var configure = require('./config/passport');
+const configure = require('./config/passport');
 
 //CREATE APP
-var app = express();
+const app = express();
 
 //MONGO SETUP
 mongoose.connect('mongodb://localhost:27017/passport');
@@ -59,9 +59,9 @@ app.use((req, res, next) => {
 
 
 //ROUTES
-var index = require('./routes/index');
-var auth = require('./routes/auth');
-var profile = require('./routes/profile');
+const index = require('./routes/index');
+const auth = require('./routes/auth');
+const profile = require('./routes/profile');
 
 app.use('/', index);
 app.use('/', auth);
