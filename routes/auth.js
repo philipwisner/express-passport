@@ -41,7 +41,7 @@ router.get("/auth/facebook", passport.authenticate("facebook", {
   scope: 'email'
 }));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/main",
+  successRedirect: "/index",
   failureRedirect: "/login"
 }));
 
@@ -55,7 +55,7 @@ router.get("/auth/google", passport.authenticate("google", {
 
 router.get("/auth/google/callback", passport.authenticate("google", {
   failureRedirect: "/login",
-  successRedirect: "/main"
+  successRedirect: "/index"
 }));
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
