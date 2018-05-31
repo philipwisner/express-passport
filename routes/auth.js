@@ -7,7 +7,6 @@ const {
 } = require('connect-ensure-login');
 
 var User = require("../models/user");
-var UserDetails = mongoose.model('userInfo', UserDetail);
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
