@@ -11,10 +11,7 @@ var bcryptSalt = 10;
 //USER MODEL
 var User = require("../models/user");
 
-// load up the user model
 
-// expose this function to our app using module.exports
-// expose this function to our app using module.exports
 module.exports = (passport) => {
 
     // =========================================================================

@@ -6,14 +6,15 @@ var {
     ensureLoggedOut
 } = require('connect-ensure-login');
 
-//home to main search
-router.get('/profile', (req, res) => {
+const User = require('../models/user.js');
+
+
+router.get('/', ensureLoggedIn('/login'), (req, res) => {
+    var userId = req.user._id;
+
     res.render('profile', {
-        message: req.flash("error"),
-        user: req.user
+        user: req.user,
     });
 });
-
-
 
 module.exports = router;

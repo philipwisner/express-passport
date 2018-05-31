@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnCoMPASS Passport</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <% if (userSignedIn) { %>
+                <a class="navbar-brand" href="/main">EnCoMPASS</a>
+                <%} else { %>
+                <a class="navbar-brand" href="/">EnCoMPASS</a>
+            <% } %>
+        </div>
+
+        <div class="navbar-functions">
+            <ul class="nav navbar-nav navbar-right">
+                <% if (userSignedIn) { %>
+                    <li>
+                        <% if (false) { %>
+                            <a href="/profile" class="username"><%= user.username %></a>
+                        <% } %>
+                        <a href="/profile" class="username">You are Logged in</a>
+                    </li>
+                <%} else { %>
+                    <li>
+                        <a href="/signup">Sign up</a>
+                    </li>
+                <% } %>
+                <% if (userSignedIn) { %>
+                    <li>
+                        <a href="/logout" id="logout">Log out</a>
+                    </li>
+                    <%} else { %>
+                        <li>
+                            <a href="/login">Log in</a>
+                        </li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <%- body -%>
+
+</body>
+
+</html>

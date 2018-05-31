@@ -15,7 +15,8 @@ var UserSchema = new Schema({
         type: String
     },
     facebookID: String,
-    googleID: String
+    googleID: String,
+    accountType: String,
 });
 
 var User = mongoose.model('User', UserSchema);
