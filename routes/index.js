@@ -10,14 +10,5 @@ router.get('/', ensureLoggedOut('/index'), function (req, res, next) {
   });
 });
 
-//home to main search
-router.get('/index', (req, res) => {
-  res.render('index', {
-    message: req.flash("error"),
-    user: req.user
-  });
-});
-
-
 
 module.exports = router;
