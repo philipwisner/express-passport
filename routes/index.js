@@ -9,13 +9,13 @@ const {
 //get home page
 router.get('/', ensureLoggedOut('/index'), function (req, res, next) {
   res.render('index', {
-    title: 'Farm Voyage'
+    title: 'Encompass'
   });
 });
 
 //home to main search
-router.get('/main', (req, res) => {
-  res.render('main', {
+router.get('/index', (req, res) => {
+  res.render('index', {
     message: req.flash("error"),
     user: req.user
   });
