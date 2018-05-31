@@ -8,8 +8,6 @@ var expressLayouts = require('express-ejs-layouts');
 var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var passport = require('passport');
 
 //PASSPORT FILE
 var configure = require('./config/passport');
@@ -24,9 +22,6 @@ app.use(session({
   secret: 'passport-app',
   resave: true,
   saveUninitialized: true,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection
-  })
 }));
 
 
@@ -38,6 +33,7 @@ app.set('view engine', 'ejs');
 configure(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 
 //MIDDLEWARE
@@ -61,9 +57,11 @@ app.use((req, res, next) => {
 //ROUTES
 var index = require('./routes/index');
 var auth = require('./routes/auth');
+var profile = require('./routes/profile');
 
 app.use('/', index);
 app.use('/', auth);
+app.use('/profile', profile)
 
 
 

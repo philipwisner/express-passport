@@ -1,25 +1,22 @@
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
-const {
-  ensureLoggedIn,
-  ensureLoggedOut
-} = require('connect-ensure-login');
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 var User = require("../models/user");
 
 // Bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
+var bcrypt = require("bcrypt");
+var bcryptSalt = 10;
 
 
 //signIn
 router.get('/login', ensureLoggedOut(), (req, res) => {
-  res.render('auth/login');s
+  res.render('auth/login');
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successReturnToOrRedirect: 'index',
+  successReturnToOrRedirect: '/profile',
   failureRedirect: '/login',
   passReqToCallback: true
 }));
@@ -30,7 +27,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successReturnToOrRedirect: 'index',
+  successReturnToOrRedirect: '/profile',
   failureRedirect: '/signup',
   passReqToCallback: true
 }));
@@ -41,7 +38,7 @@ router.get("/auth/facebook", passport.authenticate("facebook", {
   scope: 'email'
 }));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/index",
+  successRedirect: "/profile",
   failureRedirect: "/login"
 }));
 
@@ -55,10 +52,10 @@ router.get("/auth/google", passport.authenticate("google", {
 
 router.get("/auth/google/callback", passport.authenticate("google", {
   failureRedirect: "/login",
-  successRedirect: "/index"
+  successRedirect: "/profile"
 }));
 
-router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
+router.get('/logout', ensureLoggedIn('/'), (req, res) => {
   req.logout();
   res.redirect('/');
 });
